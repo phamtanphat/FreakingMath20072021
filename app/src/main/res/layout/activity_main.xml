@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFB300"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textViewPoint"
+        android:layout_marginRight="5dp"
+        android:layout_alignParentRight="true"
+        android:textStyle="bold"
+        android:fontFamily="@font/quicksand_semibold"
+        android:textColor="@color/white"
+        android:text="0"
+        android:textSize="25sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <LinearLayout
+        android:weightSum="3"
+        android:layout_below="@id/textViewPoint"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_weight="2"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <TextView
+                android:id="@+id/textViewExpression"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textSize="80sp"
+                android:text="2 + 1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:fontFamily="@font/quicksand_semibold"
+                android:textSize="80sp"
+                android:text="= 3"
+                android:id="@+id/textViewResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+            <ImageButton
+                android:scaleType="centerInside"
+                android:src="@drawable/checked"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+            <ImageButton
+                android:scaleType="centerInside"
+                android:src="@drawable/crossed"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+    </LinearLayout>
+
+
+</RelativeLayout>
