@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DecimalFormat;
 import java.util.Random;
@@ -17,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
     ImageButton mImgTrue, mImgFalse;
     RelativeLayout mContainer;
     float mNumber1, mNumber2, mResult;
-    int mIndexOperator;
+    int mIndexOperator , mPoint;
     boolean mIsTrue;
     Random mRandom;
 
@@ -48,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        mNumber1 = mNumber2 = 0;
+        mNumber1 = mNumber2 = mPoint =  0;
         mResult = -1f;
         mIndexOperator = -1;
         mIsTrue = false;
@@ -57,6 +59,34 @@ public class MainActivity extends AppCompatActivity {
 
     private void event() {
         randomExpression();
+
+        mImgTrue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mIsTrue){
+                    mPoint += 1;
+                }else{
+                    Toast.makeText(MainActivity.this, "Kết quả sai , số điểm cao nhất là " + mPoint, Toast.LENGTH_SHORT).show();
+                    mPoint = 0;
+                }
+                mTvPoint.setText(String.valueOf(mPoint));
+                randomExpression();
+            }
+        });
+
+        mImgFalse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (!mIsTrue){
+                    mPoint += 1;
+                }else{
+                    Toast.makeText(MainActivity.this, "Kết quả sai , số điểm cao nhất là " + mPoint, Toast.LENGTH_SHORT).show();
+                    mPoint = 0;
+                }
+                mTvPoint.setText(String.valueOf(mPoint));
+                randomExpression();
+            }
+        });
     }
 
     private void randomExpression() {
