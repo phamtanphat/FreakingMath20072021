@@ -15,8 +15,7 @@ public class MainActivity extends AppCompatActivity {
     TextView mTvPoint , mTvExpression , mTvResult;
     ImageButton mImgTrue,mImgFalse;
     RelativeLayout mContainer;
-    int mNumber1 , mNumber2 , mIndexOperator;
-    String mOperator;
+    int mNumber1 , mNumber2 , mIndexOperator , mResult;
     Random mRandom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +44,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void initData(){
         mNumber1 = mNumber2 = 0;
-        mIndexOperator = -1;
-        mOperator = "";
+        mIndexOperator = mResult = -1;
         mRandom = new Random();
     }
 
@@ -66,5 +64,25 @@ public class MainActivity extends AppCompatActivity {
         // 1 -> -
         // 2 -> *
         // 3 -> /
+        // random toán tử
+        mIndexOperator = mRandom.nextInt(4);
+
+        switch (mIndexOperator){
+            case 0 : mResult = mNumber1 + mNumber2;
+                setTextNumber(mNumber1,mNumber2,"+");
+                break;
+            case 1 : mResult = mNumber1 - mNumber2;
+                setTextNumber(mNumber1,mNumber2,"-");
+                break;
+            case 2 : mResult = mNumber1 * mNumber2;
+                setTextNumber(mNumber1,mNumber2,"*");
+                break;
+            case 3 : mResult = mNumber1 / mNumber2;
+                setTextNumber(mNumber1,mNumber2,"/");
+                break;
+        }
+    }
+    private void setTextNumber(int number1 , int number2 , String operator){
+        mTvExpression.setText(String.format("%d %s %d",number1 , operator , number2));
     }
 }
