@@ -15,7 +15,8 @@ public class MainActivity extends AppCompatActivity {
     TextView mTvPoint , mTvExpression , mTvResult;
     ImageButton mImgTrue,mImgFalse;
     RelativeLayout mContainer;
-    int mNumber1 , mNumber2;
+    int mNumber1 , mNumber2 , mIndexOperator;
+    String mOperator;
     Random mRandom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void initData(){
         mNumber1 = mNumber2 = 0;
+        mIndexOperator = -1;
+        mOperator = "";
         mRandom = new Random();
     }
 
@@ -58,5 +61,10 @@ public class MainActivity extends AppCompatActivity {
         // random toán hạng
         mNumber1 = mRandom.nextInt(99) + 1;
         mNumber2 = mRandom.nextInt(99) + 1;
+
+        // 0 -> +
+        // 1 -> -
+        // 2 -> *
+        // 3 -> /
     }
 }
