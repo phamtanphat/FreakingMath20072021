@@ -2,6 +2,7 @@ package com.example.freakingmath20072021;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -105,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
         mIndexOperator = mRandom.nextInt(4);
         // random trường hợp kết quả nên đúng hay sai
         mIsTrue = mRandom.nextBoolean();
+        // random color background;
+        mContainer.setBackgroundColor(Color.rgb(mRandom.nextInt(200),mRandom.nextInt(200),mRandom.nextInt(200)));
 
         switch (mIndexOperator) {
             case 0:
