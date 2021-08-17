@@ -12,11 +12,13 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView mTvPoint , mTvExpression , mTvResult;
-    ImageButton mImgTrue,mImgFalse;
+    TextView mTvPoint, mTvExpression, mTvResult;
+    ImageButton mImgTrue, mImgFalse;
     RelativeLayout mContainer;
-    int mNumber1 , mNumber2 , mIndexOperator , mResult;
+    float mNumber1, mNumber2, mResult;
+    int mIndexOperator;
     Random mRandom;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,8 @@ public class MainActivity extends AppCompatActivity {
         event();
 
     }
-    private void mapView(){
+
+    private void mapView() {
         mTvExpression = findViewById(R.id.textViewExpression);
         mTvPoint = findViewById(R.id.textViewPoint);
         mTvResult = findViewById(R.id.textViewResult);
@@ -42,17 +45,18 @@ public class MainActivity extends AppCompatActivity {
         mContainer = findViewById(R.id.relativeLayoutContainer);
     }
 
-    private void initData(){
+    private void initData() {
         mNumber1 = mNumber2 = 0;
-        mIndexOperator = mResult = -1;
+        mResult = -1f;
+        mIndexOperator = -1;
         mRandom = new Random();
     }
 
-    private void event(){
+    private void event() {
         randomExpression();
     }
 
-    private void randomExpression(){
+    private void randomExpression() {
         // (smax - smin +1) + smin;
         // (99 - 1 + 1) + 1 (Random trong khoảng từ smin -> smax)
 
@@ -67,22 +71,28 @@ public class MainActivity extends AppCompatActivity {
         // random toán tử
         mIndexOperator = mRandom.nextInt(4);
 
-        switch (mIndexOperator){
-            case 0 : mResult = mNumber1 + mNumber2;
-                setTextNumber(mNumber1,mNumber2,"+");
+        switch (mIndexOperator) {
+            case 0:
+                mResult = mNumber1 + mNumber2;
+                setTextNumber(mNumber1, mNumber2, "+");
                 break;
-            case 1 : mResult = mNumber1 - mNumber2;
-                setTextNumber(mNumber1,mNumber2,"-");
+            case 1:
+                mResult = mNumber1 - mNumber2;
+                setTextNumber(mNumber1, mNumber2, "-");
                 break;
-            case 2 : mResult = mNumber1 * mNumber2;
-                setTextNumber(mNumber1,mNumber2,"*");
+            case 2:
+                mResult = mNumber1 * mNumber2;
+                setTextNumber(mNumber1, mNumber2, "*");
                 break;
-            case 3 : mResult = mNumber1 / mNumber2;
-                setTextNumber(mNumber1,mNumber2,"/");
+            case 3:
+                mResult = mNumber1 / mNumber2;
+                setTextNumber(mNumber1, mNumber2, "/");
                 break;
         }
     }
-    private void setTextNumber(int number1 , int number2 , String operator){
-        mTvExpression.setText(String.format("%d %s %d",number1 , operator , number2));
+    //cast == covert type
+
+    private void setTextNumber(float number1, float number2, String operator) {
+        mTvExpression.setText(String.format("%d %s %d", (int) number1, operator, (int) number2));
     }
 }
