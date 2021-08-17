@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#FFB300"
+    android:id="@+id/relativeLayoutContainer"
     tools:context=".MainActivity">
 
     <TextView
@@ -60,12 +61,14 @@
             android:layout_width="match_parent"
             android:layout_height="0dp">
             <ImageButton
+                android:id="@+id/imageButtonTrue"
                 android:scaleType="centerInside"
                 android:src="@drawable/checked"
                 android:layout_weight="1"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"/>
             <ImageButton
+                android:id="@+id/imageButtonFalse"
                 android:scaleType="centerInside"
                 android:src="@drawable/crossed"
                 android:layout_weight="1"
