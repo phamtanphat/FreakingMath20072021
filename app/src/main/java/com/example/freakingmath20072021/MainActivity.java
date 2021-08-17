@@ -8,6 +8,7 @@ import android.widget.ImageButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.text.DecimalFormat;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout mContainer;
     float mNumber1, mNumber2, mResult;
     int mIndexOperator;
+    boolean mIsTrue;
     Random mRandom;
 
     @Override
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         mNumber1 = mNumber2 = 0;
         mResult = -1f;
         mIndexOperator = -1;
+        mIsTrue = false;
         mRandom = new Random();
     }
 
@@ -70,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
         // 3 -> /
         // random toán tử
         mIndexOperator = mRandom.nextInt(4);
+        // random trường hợp kết quả nên đúng hay sai
+        mIsTrue = mRandom.nextBoolean();
 
         switch (mIndexOperator) {
             case 0:
@@ -89,10 +94,27 @@ public class MainActivity extends AppCompatActivity {
                 setTextNumber(mNumber1, mNumber2, "/");
                 break;
         }
+
+        if (!mIsTrue){
+            Log.d("BBB","Giá trị trước khi random kết quả : " + mResult);
+            mResult += mRandom.nextInt(5) + 1;
+            Log.d("BBB","Giá trị sau khi random kết quả : " + mResult);
+        }
+        setTextResult(mResult);
+
     }
     //cast == covert type
 
     private void setTextNumber(float number1, float number2, String operator) {
         mTvExpression.setText(String.format("%d %s %d", (int) number1, operator, (int) number2));
+    }
+
+    private void setTextResult(float result){
+        if (Math.floor(result) - result < 0){
+            // format 2 số thập phân : new DecimalFormat("#.##").format(result)
+            mTvResult.setText(String.format("= %s" , new DecimalFormat("#.##").format(result).replace(",",".")));
+        }else {
+            mTvResult.setText(String.format("= %d" , (int) result));
+        }
     }
 }
